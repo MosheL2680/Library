@@ -22,17 +22,17 @@
         <a class="active" href="Customers">Customers</a>
     </div>
 
-    <div style="padding-left:16px; padding-top:10px;">
+    <div style="padding-left:16px; padding-top:10px; margin-left: 10px;">
         <h2>Manage customers</h2>
     </div>
 
-    <input type="text" id="searchInput" placeholder="Enter name to search">
+    <input type="text" id="searchInput" placeholder="Enter name to search" style="margin-left: 10px;">
     <button onclick="search()">Search</button>
     <button onclick="getAllCustomers()">Cancel</button><br><br>
-    <button id="toggleFormButton">Add New Customer</button>
+    <button id="toggleFormButton" style="margin-left: 10px;">Add New Customer</button>
 
 
-    <div id="addCustomerForm" style="display: none;">
+    <div id="addCustomerForm" style="display: none; margin-left: 10px;">
         <h5>Add a New Cusomer</h5>
         <form id="newCustomerForm">
             <label for="customerID">customerID:</label>
@@ -51,7 +51,7 @@
         </form>
     </div>
 
-    <div id="editCustomerForm" style="display: none;">
+    <div id="editCustomerForm" style="display: none; margin-left: 10px;">
         <h5>edit customer</h5>
         <form id="editForm">
             <label for="customerID">New customerID:</label>
@@ -72,7 +72,7 @@
         </form>
     </div>
     <div>
-        <table class="table" id="customersTable"></table>
+        <table class="table" id="customersTable" style="margin-left: 10px;"></table>
     </div>
 
 </body>

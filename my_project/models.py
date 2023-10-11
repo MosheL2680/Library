@@ -18,9 +18,6 @@ class Book(db.Model):
     # Establish a one-to-many relationship with loans (the 'cascade' needed to be able to delete a book with a loan record)
     loans = relationship('Loan', backref='book', lazy=True, cascade='all, delete-orphan')
 
-    # Data integrity: ensure titles are unique
-    __table_args__ = (db.UniqueConstraint('title', name='unique_title'),)
-
     def __init__(self, title, author, publishedYear, bookType):
         self.title = title
         self.author = author

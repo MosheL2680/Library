@@ -114,17 +114,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Function to delete a customer by customerID
 function deleteCustomer(customerID) {
-    // Send a DELETE request to Flask API to delete the customer
-    axios.delete(`/customers/${parseFloat(customerID)}`)
-        .then(function () {
-            // Reload the customer list to reflect the deleted customer
-            getAllCustomers();
-            // Show a success notification
-            showSuccessNotification('customer deleted successfully!');
-        })
-        .catch(function (error) {
-            console.error(`Error deleting customer with ID ${customerID}:`, error);
-        });
+    // Ask for confirmation from the user
+    const userConfirmed = confirm("Are you sure you want to delete this customer?");
+    if (userConfirmed) {
+        // Send a DELETE request to Flask API to delete the customer
+        axios.delete(`/customers/${parseFloat(customerID)}`)
+            .then(function () {
+                // Reload the customer list to reflect the deleted customer
+                getAllCustomers();
+                // Show a success notification
+                showSuccessNotification('customer deleted successfully!');
+            })
+            .catch(function (error) {
+                console.error(`Error deleting customer with ID ${customerID}:`, error);
+            });
+    }
 }
 
 // Function to toggle the add customer form's visibility
@@ -164,7 +168,7 @@ function showSuccessNotification(message) {
         duration: 3000, // Notification will disappear after 3 seconds
         gravity: 'top', // Position it at the top of the screen
         position: 'center', // Position it horizontally in the center
-        backgroundColor: 'green', // Background color for success
+        backgroundColor: '#04AA6D', // Background color for success
     }).showToast();
 }
 

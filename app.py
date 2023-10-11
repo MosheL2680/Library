@@ -2,6 +2,7 @@ from flask import render_template
 from my_project import app
 
 
+# Routes to render templates the web pages
 @app.route('/')
 def index_page():
     return render_template('index.html')
@@ -19,6 +20,6 @@ def customers_page():
     return render_template('customers.html')
 
 
-
+# Run the flask app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5001, debug=True)

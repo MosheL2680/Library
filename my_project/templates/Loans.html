@@ -16,9 +16,9 @@
 <body>
 
   <div class="sidenav">
-    <a href="#" onclick="getAllLoans()" id="allLoans">All Loans</a>
-    <a href="#" onclick="displayActiveLoans()">Active Loans</a>
-    <a href="#" onclick="displayLateLoans()">Late Loans</a>
+    <a href="#" onclick="getAllLoans()" id="a">All Loans</a>
+    <a href="#" onclick="displayActiveLoans()" id="b">Active Loans</a>
+    <a href="#" onclick="displayLateLoans()" id="c">Late Loans</a>
   </div>
 
   <div class="topnav">
@@ -28,13 +28,13 @@
     <a href="Customers">Customers</a>
   </div>
 
-  <div style="padding-left:16px; margin-left:85px; padding-top:10px;">
+  <div style="margin-left:85px;">
     <h2>Manage loans</h2>
+    <!-- [To loan a book go to <a href="Books">Books]</a></div> -->
   </div>
 
-  <input style="margin-left: 85px;" type="text" id="searchInput" placeholder="Enter book to search">
-  <button onclick="search()">Search</button>
-  <button onclick="getAllLoans()">Cancel</button><br><br>
+  <input id="searchInput" style="margin-left: 85px;" type="text" placeholder="Enter book title to search">
+  <div id="searchButton"></div>
 
   <div>
     <table style="margin-left: 85px;" class="table" id="loansTable"></table>

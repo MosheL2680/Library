@@ -1,3 +1,7 @@
+let allLoans = []
+let activeLoans = []
+
+
 // Function to format a date string to a simpler format
 function formatDate(dateString) {
     const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
@@ -9,6 +13,12 @@ function getAllLoans() {
     axios.get('/loans')
         .then(function (response) {
             allLoans = response.data.loans; // Assign the fetched loans to the allLoans variable
+            // Display the relevant search button
+            searchButton.innerHTML = '<button style="margin-left: 85px;" onclick="search(allLoans)">Search</button><button onclick="getAllLoans()">Cancel</button>'
+            // Set the side bar active item color
+            b.style.backgroundColor = '#04AA6D'
+            c.style.backgroundColor = '#04AA6D'
+            a.style.backgroundColor = '#333'
             // Display all loans initially
             displayLoans(allLoans);
         })
@@ -30,7 +40,7 @@ function createTableHeaders() {
             <th>Book</th>
             <th>Customer</th>
             <th>Loan date</th>
-            <th>Max return date</th>
+            <th>Latest date to return</th>
             <th>Return date</th>
         </tr>
     `;
@@ -72,13 +82,22 @@ function displayLoans(loans) {
 // Function to display active loans only
 function displayActiveLoans() {
     // Filter loans with no returnDate to get active loans
-    const activeLoans = allLoans.filter(function (loan) {
+    activeLoans = allLoans.filter(function (loan) {
         return !loan.ReturnDate;
     });
     // Check if there are no active loans, and tostify it, else - display active loans
-    (activeLoans.length === 0) ? showSuccessNotification("There are no active loans.") : displayLoans(activeLoans);
+    if (activeLoans.length === 0) showSuccessNotification("There are no active loans.")
+    else{
+        // Display the relevant search button
+        searchButton.innerHTML = '<button style="margin-left: 85px;" onclick="search(activeLoans)">Search</button><button onclick="displayActiveLoans()">Cancel</button>'
+        // Set the side bar active item color
+        a.style.backgroundColor = '#04AA6D'
+        c.style.backgroundColor = '#04AA6D'
+        b.style.backgroundColor = '#333'
+    
+        displayLoans(activeLoans);
+    }
 }
-
 
 // Display loans where the book hasn't been returned even though the maxReturnDate passed
 function displayLateLoans() {
@@ -87,7 +106,14 @@ function displayLateLoans() {
             lateLoans = response.data.late_loans;
 
             // Use the ternary operator to conditionally show a notification or display loans
-            (lateLoans.length === 0) ? showSuccessNotification("There are no late loans.") : displayLoans(lateLoans);
+            if(lateLoans.length === 0) showSuccessNotification("There are no late loans.")
+            else{
+                // Set the side bar active item color
+                b.style.backgroundColor = '#04AA6D'
+                a.style.backgroundColor = '#04AA6D'
+                c.style.backgroundColor = '#333'
+                displayLoans(lateLoans);
+            }
         })
         .catch(function (error) {
             console.error('Error fetching late loans:', error);
@@ -95,6 +121,7 @@ function displayLateLoans() {
         });
 }
 
+// Ruturn book and end the loan
 function returnBook(loanID) {
     // Ask for confirmation from the user
     const userConfirmed = confirm("Are you sure you want to return this book?");
@@ -122,8 +149,14 @@ function returnBook(loanID) {
     }
 }
 
-
-
+// Search a specific loan (by book title), using "filter"
+function search(loans){
+    const search_input = searchInput.value.toLowerCase();
+    const filterLoans = loans.filter(function(loan){
+        return loan.bookTitle.toLowerCase().includes(search_input)
+    });
+    displayLoans(filterLoans)
+}
 
 // Function to display a success notification using Toastify
 function showSuccessNotification(message) {
@@ -132,7 +165,7 @@ function showSuccessNotification(message) {
         duration: 3000, // Notification will disappear after 3 seconds
         gravity: 'top', // Position it at the top of the screen
         position: 'center', // Position it horizontally in the center
-        backgroundColor: 'green', // Background color for success
+        backgroundColor: '#04AA6D', // Background color for success
     }).showToast();
 }
 

@@ -39,7 +39,7 @@ function displayBooks(books) {
     // Remove existing rows from the table
     const existingTableBody = booksTable.getElementsByTagName('tbody')[0];
     if (existingTableBody) existingTableBody.remove();
-    
+
     // Use forEach loop to display the books
     books.forEach(function (book) {
         const row = document.createElement('tr');
@@ -70,10 +70,10 @@ function addNewBook(event) {
 
     // Send a POST request to Flask API to add the new book
     axios.post('/books', {
-        "title":title.value,
-        "author":author.value,
-        "publishedYear":publishedYear.value,
-        "bookType":parseInt(selectedBookType.value)
+        "title": title.value,
+        "author": author.value,
+        "publishedYear": publishedYear.value,
+        "bookType": parseInt(selectedBookType.value)
     })
         .then(function () {
             // Reload the book list to show the newly added book
@@ -111,23 +111,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Function to delete a book by bookID
 function deleteBook(bookID) {
-    // Send a DELETE request to Flask API to delete the book
-    axios.delete(`/books/${bookID}`)
-        .then(function () {
-            // Reload the book list to reflect the deleted book
-            getAllBooks();
-            // Show a success notification
-            showSuccessNotification('Book deleted successfully!');
-        })
-        .catch(function (error) {
-            console.error(`Error deleting book with ID ${bookID}:`, error);
-        });
+    // Ask for confirmation from the user
+    const userConfirmed = confirm("Are you sure you want to delete this book?");
+    if (userConfirmed) {
+        // Send a DELETE request to Flask API to delete the book
+        axios.delete(`/books/${bookID}`)
+            .then(function () {
+                // Reload the book list to reflect the deleted book
+                getAllBooks();
+                // Show a success notification
+                showSuccessNotification('Book deleted successfully!');
+            })
+            .catch(function (error) {
+                console.error(`Error deleting book with ID ${bookID}:`, error);
+            });
+    }
 }
 
 // Function to toggle the add book form's visibility
 function toggleEditBookForm(bookID) {
     currentBookID = bookID;
-    editBookForm.style.display = (editBookForm.style.display==='none')?  'block':'none'
+    editBookForm.style.display = (editBookForm.style.display === 'none') ? 'block' : 'none'
 }
 
 // Update book details
@@ -163,18 +167,19 @@ function loanBook(bookID) {
                 "bookID": bookID,
                 "customerID": customerID,
             })
-            .then(function (response) {
-                // Check if the request was successful
-                if (response.data.message === 'Loan created successfully!') {
-                    // Show a success notification
-                    showSuccessNotification('Book loaned successfully!');
-                    getAllBooks()
-                }
-                else showErrorNotification('Customer not found')
-            })
-            .catch(function (error) {
-                console.error('Error loaning book:', error);
-            });
+                .then(function (response) {
+                    // Check if the request was successful
+                    if (response.data.message === 'Loan created successfully!') {
+                        // Show a success notification
+                        showSuccessNotification(`Book loaned successfully!
+                        latest date to return: ${none}`);
+                        getAllBooks()
+                    }
+                    else showErrorNotification('Customer not found')
+                })
+                .catch(function (error) {
+                    console.error('Error loaning book:', error);
+                });
         } else {
             return
         }
@@ -183,9 +188,6 @@ function loanBook(bookID) {
         showErrorNotification('The selected book is not available for loan.');
     }
 }
-
-
-
 
 // Search a book by title / author using "filter"
 function search() {
@@ -204,7 +206,7 @@ function showSuccessNotification(message) {
         duration: 3000, // Notification will disappear after 3 seconds
         gravity: 'top', // Position it at the top of the screen
         position: 'center', // Position it horizontally in the center
-        backgroundColor: 'green', // Background color for success
+        backgroundColor: '#04AA6D', // Background color for success
     }).showToast();
 }
 

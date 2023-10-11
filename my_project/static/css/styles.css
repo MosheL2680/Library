@@ -32,14 +32,14 @@ body {
 .sidenav {
   height: 100%;
   /* Full-height sidebar */
-  width: 80px;
+  width: 78px;
   /* Set the width of the sidebar */
   position: fixed;
   /* Fixed position to keep it in view */
   top: 60px;
   /* Adjust this value to create space below the top menu */
   left: 0;
-  background-color: #333;
+  background-color: #04AA6D;
   /* Background color */
   padding-top: 20px;
   /* Add some top padding */

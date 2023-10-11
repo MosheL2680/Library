@@ -22,17 +22,17 @@
         <a href="Customers">Customers</a>
     </div>
 
-    <div style="padding-left:16px; padding-top:10px;">
+    <div style="padding-left:16px; padding-top:10px; margin-left:10px">
         <h2>Manage books</h2>
     </div>
 
-    <input type="text" id="searchInput" placeholder="Enter name to search">
+    <input type="text" id="searchInput" placeholder="Enter name to search" style="margin-left: 10px;">
     <button onclick="search()">Search</button>
     <button onclick="getAllBooks()">Cancel</button><br><br>
-    <button id="toggleFormButton">Add New Book</button>
+    <button id="toggleFormButton" style="margin-left: 10px;">Add New Book</button>
 
 
-    <div id="addBookForm" style="display: none;">
+    <div id="addBookForm" style="display: none; margin-left: 10px;">
         <h5>Add a New Book</h5>
         <form id="newBookForm">
             <label for="title">Title:</label>
@@ -46,19 +46,19 @@
 
             <label>Book Type:</label><br>
             <input type="radio" id="bookType1" name="bookType" value="1" required>
-            <label for="bookType1">1</label><br>
+            <label for="bookType1">1 - return within 10 days</label><br>
 
             <input type="radio" id="bookType2" name="bookType" value="2">
-            <label for="bookType2">2</label><br>
+            <label for="bookType2">2 - return within 5 days</label><br>
 
             <input type="radio" id="bookType3" name="bookType" value="3">
-            <label for="bookType3">3</label><br>
+            <label for="bookType3">3 - return within 2 days</label><br>
 
             <button type="submit">Add Book</button>
         </form>
     </div>
 
-    <div id="editBookForm" style="display: none;">
+    <div id="editBookForm" style="display: none; margin-left: 10px;">
         <h5>edit book</h5>
         <form id="editForm">
             <label for="title">New title:</label>
@@ -85,7 +85,7 @@
         </form>
     </div>
     <div>
-        <table class="table" id="booksTable"></table>
+        <table class="table" id="booksTable" style="margin-left: 10px;"></table>
     </div>
 
 </body>
