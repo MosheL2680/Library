@@ -84,7 +84,7 @@ def get_late_loans():
 
     # filter late and active loans
     late_loans = Loan.query.join(Book, Loan.bookID == Book.bookID).filter(
-        Loan.maxReturnDate <= current_date,
+        Loan.maxReturnDate < current_date,
         Book.status == 'unavailable'
     ).all()
 
