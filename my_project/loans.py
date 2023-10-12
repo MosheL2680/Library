@@ -84,10 +84,10 @@ def get_late_loans():
 
     # filter late and active loans
     late_loans = Loan.query.join(Book, Loan.bookID == Book.bookID).filter(
-        Loan.maxReturnDate < current_date,
+        Loan.maxReturnDate <= current_date,
         Book.status == 'unavailable'
     ).all()
 
-    late_loan_list = [{'loanID': loan.loanID, 'loanDate': loan.loanDate, 'maxReturnDate': loan.maxReturnDate, 'bookID': loan.bookID, 'customerID': loan.customerID} for loan in late_loans]
+    late_loan_list = [{'loanID': loan.loanID, 'loanDate': loan.loanDate, 'MaxReturnDate': loan.maxReturnDate, 'ReturnDate': loan.returnDate, 'bookTitle': loan.book.title, 'customerName': loan.customer.Name} for loan in late_loans]
 
     return jsonify({'late_loans': late_loan_list})

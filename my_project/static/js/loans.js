@@ -2,7 +2,7 @@
 
 let allLoans = []
 let activeLoans = []
-let lateLoans =[]
+let lateLoans = []
 
 
 
@@ -107,6 +107,8 @@ function displayLateLoans() {
             // Use the ternary operator to conditionally show a notification or display loans
             if(lateLoans.length === 0) showSuccessNotification("There are no late loans.")
             else{
+                // Display the relevant search button
+                searchButton.innerHTML = '<button style="margin-left: 85px;" onclick="search(lateLoans)">Search</button><button onclick="displayLateLoans()">Cancel</button>'
                 // Set the currently active side bar item color
                 b.style.backgroundColor = '#04AA6D'
                 a.style.backgroundColor = '#04AA6D'
