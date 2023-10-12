@@ -5,6 +5,8 @@ function getAllCustomers() {
     axios.get('/customers')
         .then(function (response) {
             allCustomers = response.data.customers; // Assign the fetched customers to the allCustomers variable
+            // Clear the search input
+            searchInput.value = ''
             // Display all customers initially
             displayCustomers(allCustomers);
         })

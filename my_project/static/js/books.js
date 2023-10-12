@@ -5,6 +5,8 @@ function getAllBooks() {
     axios.get('/books')
         .then(function (response) {
             allBooks = response.data.books; // Assign the fetched books to the allBooks variable
+            // Clear the search input
+            searchInput.value = ''
             // Display all books initially
             displayBooks(allBooks);
         })
@@ -171,8 +173,7 @@ function loanBook(bookID) {
                     // Check if the request was successful
                     if (response.data.message === 'Loan created successfully!') {
                         // Show a success notification
-                        showSuccessNotification(`Book loaned successfully!
-                        latest date to return: ${none}`);
+                        showSuccessNotification('Book loaned successfully');
                         getAllBooks()
                     }
                     else showErrorNotification('Customer not found')

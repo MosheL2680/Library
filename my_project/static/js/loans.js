@@ -19,6 +19,8 @@ function getAllLoans() {
             b.style.backgroundColor = '#04AA6D'
             c.style.backgroundColor = '#04AA6D'
             a.style.backgroundColor = '#333'
+            // Clear the search input
+            searchInput.value = ''
             // Display all loans initially
             displayLoans(allLoans);
         })
@@ -53,7 +55,7 @@ document.addEventListener('DOMContentLoaded', createTableHeaders);
 // Display the table body
 function displayLoans(loans) {
     const tableBody = document.createElement('tbody');
-
+    
     // Remove existing rows from the table
     const existingTableBody = loansTable.getElementsByTagName('tbody')[0];
     if (existingTableBody) existingTableBody.remove();
@@ -94,7 +96,8 @@ function displayActiveLoans() {
         a.style.backgroundColor = '#04AA6D'
         c.style.backgroundColor = '#04AA6D'
         b.style.backgroundColor = '#333'
-    
+        // Clear the search input
+        searchInput.value = ''
         displayLoans(activeLoans);
     }
 }
@@ -112,6 +115,8 @@ function displayLateLoans() {
                 b.style.backgroundColor = '#04AA6D'
                 a.style.backgroundColor = '#04AA6D'
                 c.style.backgroundColor = '#333'
+                // Clear the search input
+                searchInput.value = ''
                 displayLoans(lateLoans);
             }
         })
