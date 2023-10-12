@@ -1,3 +1,5 @@
+# This file contain the customers related routes
+
 from flask import Blueprint, jsonify, request
 from my_project.models import Customer
 from my_project import db
@@ -10,7 +12,6 @@ customers = Blueprint('customers', __name__)
 @customers.route('/customers', methods=['POST'])
 def create_customer():
     data = request.get_json()
-    print(data)
     # Validate that required fields are present in the request data
     if 'customerID' not in data or 'Name' not in data or 'age' not in data or 'city' not in data:
         return jsonify({'error': 'Required fields are missing in the request data (must be: customerID, Name, age, city)'}, 400)
@@ -22,7 +23,6 @@ def create_customer():
     
     # Check if a customer with the same customerID already exists
     existing_customer = Customer.query.filter_by(customerID=customerID).first()
-    
     if existing_customer:
         return jsonify({'error': 'CustomerID is already in use'}), 400
 
@@ -45,15 +45,16 @@ def get_customers():
 @customers.route('/customers/<string:customerID>', methods=['PUT'])
 def update_customer(customerID):
     data = request.get_json()
-    print(data)
+    
     new_customerID = data.get('customerID')
     new_name = data.get('Name')
     new_age = data.get('age')
     new_city = data.get('city')
 
+    # check if the customer exists
     customer = Customer.query.get(customerID)
-
     if customer:
+            # check for each object if exists, to allow edit just part of the customer objects
             if new_customerID is not None:
                 customer.customerID = new_customerID
             if new_name is not None:
@@ -73,7 +74,7 @@ def update_customer(customerID):
 @customers.route('/customers/<string:customerID>', methods=['DELETE'])
 def delete_customer(customerID):
     customer = Customer.query.get(customerID)
-
+    # check if the customer exists
     if customer:
         db.session.delete(customer)
         db.session.commit()

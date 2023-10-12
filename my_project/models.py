@@ -1,3 +1,5 @@
+# This file contain creation of the db models
+
 from datetime import timedelta
 from sqlalchemy import ForeignKeyConstraint
 from my_project import db, app

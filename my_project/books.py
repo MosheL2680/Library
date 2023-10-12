@@ -1,3 +1,5 @@
+# This file contain books related routes
+
 from flask import Blueprint, jsonify, request
 from my_project.models import Book
 from my_project import db
@@ -48,9 +50,10 @@ def update_book(bookID):
     new_publishedYear = data.get('publishedYear')
     new_bookType = data.get('bookType')
 
+    # validate that this book exists
     book = Book.query.get(bookID)
-
     if book:
+        #check for each object if exists, to allow edit just some of the book objects
         if new_title is not None:
             book.title = new_title
         if new_author is not None:
@@ -69,8 +72,8 @@ def update_book(bookID):
 # Route to delete a book
 @books.route('/books/<int:bookID>', methods=['DELETE'])
 def delete_book(bookID):
+    #check if the book exists
     book = Book.query.get(bookID)
-
     if book:
         db.session.delete(book)
         db.session.commit()

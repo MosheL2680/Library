@@ -1,3 +1,5 @@
+# This file contain loans related routes
+
 from datetime import datetime
 from flask import Blueprint, jsonify, request
 from sqlalchemy import func
@@ -19,7 +21,8 @@ def create_loan():
     
     bookID = data['bookID']
     customerID = data['customerID']
-    loanDate = datetime.now()
+    loanDate = datetime.now() # set the loan date to the current date
+
     
     # Check if the book with the specified bookID exists
     book = Book.query.get(bookID)
@@ -59,12 +62,11 @@ def get_loans():
 def end_loan(loan_id):
     # Check if there is an active loan with the provided loan ID
     loan = Loan.query.filter_by(loanID=loan_id, returnDate=None).first()
-
     if loan:
-        # Set the returnDate to the current timestamp
+        # Set the returnDate to the current date
         loan.returnDate = datetime.now()
 
-        # Update the book status to 'available'
+        #check if the book exists, and update the book status to 'available'
         book = Book.query.get(loan.bookID)
         if book:
             book.status = 'available'
@@ -75,12 +77,12 @@ def end_loan(loan_id):
     else:
         return jsonify({'error': 'No active loan found with the provided loan ID'}, 400)
 
-# Route to retrieve loans that theire maxReturnDate has passed (and still hasnt been returned)
+# Route to retrieve loans that their maxReturnDate has passed (and have'nt yet been returned)
 @loans.route('/loans/late', methods=['GET'])
 def get_late_loans():
     current_date = datetime.now().date()
 
-    # Query for late and active loans
+    # filter late and active loans
     late_loans = Loan.query.join(Book, Loan.bookID == Book.bookID).filter(
         Loan.maxReturnDate < current_date,
         Book.status == 'unavailable'

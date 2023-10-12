@@ -1,19 +1,7 @@
+// This file contain js for "books.html" file
+
 let allBooks = [];
 
-// Function to fetch all books using Axios
-function getAllBooks() {
-    axios.get('/books')
-        .then(function (response) {
-            allBooks = response.data.books; // Assign the fetched books to the allBooks variable
-            // Clear the search input
-            searchInput.value = ''
-            // Display all books initially
-            displayBooks(allBooks);
-        })
-        .catch(function (error) {
-            console.error('Error fetching books:', error);
-        });
-}
 
 // Function to create table headers
 function createTableHeaders() {
@@ -34,7 +22,7 @@ function createTableHeaders() {
 // Call createTableHeaders once when the page loads
 document.addEventListener('DOMContentLoaded', createTableHeaders);
 
-// Display the table body
+// Get an array and display it as the table body
 function displayBooks(books) {
     const tableBody = document.createElement('tbody');
 
@@ -42,7 +30,7 @@ function displayBooks(books) {
     const existingTableBody = booksTable.getElementsByTagName('tbody')[0];
     if (existingTableBody) existingTableBody.remove();
 
-    // Use forEach loop to display the books
+    // Use forEach loop to display the array
     books.forEach(function (book) {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -59,18 +47,34 @@ function displayBooks(books) {
         `;
         tableBody.appendChild(row);
     });
-
-    document.getElementById('booksTable').appendChild(tableBody);
+    booksTable.appendChild(tableBody);
 }
 
-// Handle form submission and add a new book
+// Function to fetch all books using Axios
+function getAllBooks() {
+    // send GET requst to the flask server
+    axios.get('/books')
+        .then(function (response) {
+            allBooks = response.data.books; // Assign the fetched books to the allBooks variable
+            // Clear the search input field
+            searchInput.value = ''
+            // Display all books initially
+            displayBooks(allBooks);
+        })
+        .catch(function (error) {
+            console.error('Error fetching books:', error);
+            showErrorNotification('Error fetching books')
+        });
+}
+
+// Add a new book
 function addNewBook(event) {
     event.preventDefault();
 
     // Get the selected bookType value from the radio buttons
     const selectedBookType = document.querySelector('input[name="bookType"]:checked');
 
-    // Send a POST request to Flask API to add the new book
+    // Send a POST request to the Flask server
     axios.post('/books', {
         "title": title.value,
         "author": author.value,
@@ -116,7 +120,7 @@ function deleteBook(bookID) {
     // Ask for confirmation from the user
     const userConfirmed = confirm("Are you sure you want to delete this book?");
     if (userConfirmed) {
-        // Send a DELETE request to Flask API to delete the book
+        // Send a DELETE request to the Flask server
         axios.delete(`/books/${bookID}`)
             .then(function () {
                 // Reload the book list to reflect the deleted book
@@ -128,12 +132,6 @@ function deleteBook(bookID) {
                 console.error(`Error deleting book with ID ${bookID}:`, error);
             });
     }
-}
-
-// Function to toggle the add book form's visibility
-function toggleEditBookForm(bookID) {
-    currentBookID = bookID;
-    editBookForm.style.display = (editBookForm.style.display === 'none') ? 'block' : 'none'
 }
 
 // Update book details
@@ -155,10 +153,16 @@ function editBook() {
     axios.put(`/books/${currentBookID}`, updatedBook);
 }
 
-function loanBook(bookID) {
-    // Check if the book is available
-    const book = allBooks.find((book) => book.bookID === bookID);
+// Function to toggle the edit book form's visibility
+function toggleEditBookForm(bookID) {
+    currentBookID = bookID;
+    editBookForm.style.display = (editBookForm.style.display === 'none') ? 'block' : 'none'
+}
 
+// Loan a book
+function loanBook(bookID) {
+    const book = allBooks.find((book) => book.bookID === bookID);
+    // Check if the book is available
     if (book && book.status === 'available') {
         const customerID = prompt("Please enter your customer ID:"); // Prompt the user for customer ID
 
@@ -176,6 +180,7 @@ function loanBook(bookID) {
                         showSuccessNotification('Book loaned successfully');
                         getAllBooks()
                     }
+                    // Handle the case where customer not found
                     else showErrorNotification('Customer not found')
                 })
                 .catch(function (error) {
@@ -190,13 +195,15 @@ function loanBook(bookID) {
     }
 }
 
-// Search a book by title / author using "filter"
+// Search a book by title or author using "filter"
 function search() {
     const search_Input = searchInput.value.toLowerCase();
+    // use filter to get a new array with maches books, and assign it to a var
     const filteredBooks = allBooks.filter(function (book) {
         return book.title.toLowerCase().includes(search_Input) ||
             book.author.toLowerCase().includes(search_Input);
     });
+    // display the new array
     displayBooks(filteredBooks);
 }
 
