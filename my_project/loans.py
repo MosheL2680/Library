@@ -77,7 +77,7 @@ def end_loan(loan_id):
     else:
         return jsonify({'error': 'No active loan found with the provided loan ID'}, 400)
 
-# Route to retrieve loans that their maxReturnDate has passed (and have'nt yet been returned)
+# Route to retrieve loans for which the books haven't been returned despite the expiration of the maximum return date.
 @loans.route('/loans/late', methods=['GET'])
 def get_late_loans():
     current_date = datetime.now().date()

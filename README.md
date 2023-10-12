@@ -103,6 +103,7 @@ Here's an overview of the directory structure for this project:
         - `books.js`: JavaScript code for books.html functionality.
         - `customers.js`: JavaScript code for customers.html functionality.
         - `loans.js`: JavaScript code for loans-.html functionality.
+        - `utils.js`: JavaScript jeneric functions for all files.
         
 
 

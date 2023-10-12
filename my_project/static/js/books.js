@@ -20,9 +20,6 @@ function createTableHeaders() {
     booksTable.appendChild(tableHeader);
 }
 
-// Call createTableHeaders once when the page loads
-document.addEventListener('DOMContentLoaded', createTableHeaders);
-
 // Get an array and display it as the table body
 function displayBooks(books) {
     const tableBody = document.createElement('tbody');
@@ -110,7 +107,10 @@ function toggleAddBookForm() {
 
 // Attach event listeners to the form and button
 document.addEventListener('DOMContentLoaded', function () {
+    // Call createTableHeaders and getAllBooks once when the page loads
+    createTableHeaders();
     getAllBooks();
+    // attach buttons to functions
     newBookForm.addEventListener('submit', addNewBook);
     editForm.addEventListener('submit', editBook);
     toggleFormButton.addEventListener('click', toggleAddBookForm);

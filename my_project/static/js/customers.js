@@ -4,7 +4,7 @@
 let allCustomers = [];
 
 
-// Function to create table headers
+// Create table headers
 function createTableHeaders() {
     const tableHeader = document.createElement('thead');
     tableHeader.innerHTML = `
@@ -167,4 +167,3 @@ function search() {
     });
     displayCustomers(filteredcustomers);
 }
-

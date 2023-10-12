@@ -23,7 +23,7 @@ function showErrorNotification(message) {
     }).showToast();
 }
 
-// attach functions to the global window object
+// Attach functions to the global window object
 window.commonFunction = showSuccessNotification;
 window.anotherCommonFunction = showErrorNotification;
 
