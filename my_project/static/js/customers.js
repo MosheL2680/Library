@@ -1,19 +1,8 @@
+// This file contain JS for "customers.html" file
+
+
 let allCustomers = [];
 
-// Function to fetch all customers using Axios
-function getAllCustomers() {
-    axios.get('/customers')
-        .then(function (response) {
-            allCustomers = response.data.customers; // Assign the fetched customers to the allCustomers variable
-            // Clear the search input
-            searchInput.value = ''
-            // Display all customers initially
-            displayCustomers(allCustomers);
-        })
-        .catch(function (error) {
-            console.error('Error fetching customers:', error);
-        });
-}
 
 // Function to create table headers
 function createTableHeaders() {
@@ -33,7 +22,7 @@ function createTableHeaders() {
 // Call createTableHeaders once when the page loads
 document.addEventListener('DOMContentLoaded', createTableHeaders);
 
-// Display the table body
+// Get an array and display it as the table body
 function displayCustomers(customers) {
     const tableBody = document.createElement('tbody');
 
@@ -58,6 +47,22 @@ function displayCustomers(customers) {
     });
 
     document.getElementById('customersTable').appendChild(tableBody);
+}
+
+// Fetch all customers and display it
+function getAllCustomers() {
+    // send GET request to the Flask server
+    axios.get('/customers')
+        .then(function (response) {
+            allCustomers = response.data.customers; // Assign the fetched customers to the allCustomers variable
+            // Clear the search input field
+            searchInput.value = ''
+            // Display all customers initially
+            displayCustomers(allCustomers);
+        })
+        .catch(function (error) {
+            console.error('Error fetching customers:', error);
+        });
 }
 
 // Handle form submission and add a new customer
@@ -95,7 +100,7 @@ function addNewCustomer(event) {
         });
 }
 
-// Function to toggle the add customer form's visibility
+// Toggle the add customer form's visibility
 function toggleAddCustomerForm() {
     if (addCustomerForm.style.display === 'none' || addCustomerForm.style.display === '') {
         addCustomerForm.style.display = 'block';
@@ -114,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
     toggleFormButton.addEventListener('click', toggleAddCustomerForm);
 });
 
-// Function to delete a customer by customerID
+// Delete a customer by customerID
 function deleteCustomer(customerID) {
     // Ask for confirmation from the user
     const userConfirmed = confirm("Are you sure you want to delete this customer?");
@@ -133,12 +138,6 @@ function deleteCustomer(customerID) {
     }
 }
 
-// Function to toggle the add customer form's visibility
-function toggleEditcustomerForm(customerID) {
-    currentCustomerID = customerID;
-    editCustomerForm.style.display = (editCustomerForm.style.display === 'none') ? 'block' : 'none'
-}
-
 // Update customer details
 function editCustomer() {
     // Creating an object to store the updated customer details
@@ -154,34 +153,18 @@ function editCustomer() {
     axios.put(`/customers/${currentCustomerID}`, updatedCustomer)
 }
 
-// Search a customer by name using "filter"
+// Toggle the edit customer form's visibility
+function toggleEditcustomerForm(customerID) {
+    currentCustomerID = customerID;
+    editCustomerForm.style.display = (editCustomerForm.style.display === 'none') ? 'block' : 'none'
+}
+
+// Search a customer (by name) using "filter"
 function search() {
     const search_input = searchInput.value.toLowerCase();
     const filteredcustomers = allCustomers.filter(function (customer) {
         return customer.Name.toLowerCase().includes(search_input)
     });
     displayCustomers(filteredcustomers);
-}
-
-// Function to display a success notification using Toastify
-function showSuccessNotification(message) {
-    Toastify({
-        text: message,
-        duration: 3000, // Notification will disappear after 3 seconds
-        gravity: 'top', // Position it at the top of the screen
-        position: 'center', // Position it horizontally in the center
-        backgroundColor: '#04AA6D', // Background color for success
-    }).showToast();
-}
-
-// Function to display an error notification using Toastify
-function showErrorNotification(message) {
-    Toastify({
-        text: message,
-        duration: 3000, // Notification will disappear after 3 seconds
-        gravity: 'top', // Position it at the top of the screen
-        position: 'center', // Position it horizontally in the center
-        backgroundColor: 'red', // Background color for errors
-    }).showToast();
 }
 

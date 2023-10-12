@@ -1,9 +1,10 @@
 // This file contain js for "books.html" file
 
+
 let allBooks = [];
 
 
-// Function to create table headers
+// Create table headers
 function createTableHeaders() {
     const tableHeader = document.createElement('thead');
     tableHeader.innerHTML = `
@@ -50,7 +51,7 @@ function displayBooks(books) {
     booksTable.appendChild(tableBody);
 }
 
-// Function to fetch all books using Axios
+// Fetch all books and display it
 function getAllBooks() {
     // send GET requst to the flask server
     axios.get('/books')
@@ -96,7 +97,7 @@ function addNewBook(event) {
         });
 }
 
-// Function to toggle the add book form's visibility
+// Toggle the add book form's visibility
 function toggleAddBookForm() {
     if (addBookForm.style.display === 'none' || addBookForm.style.display === '') {
         addBookForm.style.display = 'block';
@@ -115,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     toggleFormButton.addEventListener('click', toggleAddBookForm);
 });
 
-// Function to delete a book by bookID
+// Delete a book by bookID
 function deleteBook(bookID) {
     // Ask for confirmation from the user
     const userConfirmed = confirm("Are you sure you want to delete this book?");
@@ -153,7 +154,7 @@ function editBook() {
     axios.put(`/books/${currentBookID}`, updatedBook);
 }
 
-// Function to toggle the edit book form's visibility
+// Toggle the edit book form's visibility
 function toggleEditBookForm(bookID) {
     currentBookID = bookID;
     editBookForm.style.display = (editBookForm.style.display === 'none') ? 'block' : 'none'
@@ -195,7 +196,7 @@ function loanBook(bookID) {
     }
 }
 
-// Search a book by title or author using "filter"
+// Search a book (by title or author) using "filter"
 function search() {
     const search_Input = searchInput.value.toLowerCase();
     // use filter to get a new array with maches books, and assign it to a var
@@ -205,26 +206,4 @@ function search() {
     });
     // display the new array
     displayBooks(filteredBooks);
-}
-
-// Function to display a success notification using Toastify
-function showSuccessNotification(message) {
-    Toastify({
-        text: message,
-        duration: 3000, // Notification will disappear after 3 seconds
-        gravity: 'top', // Position it at the top of the screen
-        position: 'center', // Position it horizontally in the center
-        backgroundColor: '#04AA6D', // Background color for success
-    }).showToast();
-}
-
-// Function to display an error notification using Toastify
-function showErrorNotification(message) {
-    Toastify({
-        text: message,
-        duration: 3000, // Notification will disappear after 3 seconds
-        gravity: 'top', // Position it at the top of the screen
-        position: 'center', // Position it horizontally in the center
-        backgroundColor: 'red', // Background color for errors
-    }).showToast();
 }

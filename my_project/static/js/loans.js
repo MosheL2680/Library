@@ -162,25 +162,3 @@ function search(loans){
     });
     displayLoans(filterLoans)
 }
-
-// Function to display a success notification using Toastify
-function showSuccessNotification(message) {
-    Toastify({
-        text: message,
-        duration: 3000, // Notification will disappear after 3 seconds
-        gravity: 'top', // Position it at the top of the screen
-        position: 'center', // Position it horizontally in the center
-        backgroundColor: '#04AA6D', // Background color for success
-    }).showToast();
-}
-
-// Function to display an error notification using Toastify
-function showErrorNotification(message) {
-    Toastify({
-        text: message,
-        duration: 3000, // Notification will disappear after 3 seconds
-        gravity: 'top', // Position it at the top of the screen
-        position: 'center', // Position it horizontally in the center
-        backgroundColor: 'red', // Background color for errors
-    }).showToast();
-}
