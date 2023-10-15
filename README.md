@@ -16,7 +16,7 @@ The Library Management System is a web-based application built using Flask and S
 
 ## Features
 
-- **Books Management:** Easily add, edit, or remove books from the library's collection.
+- **Books Management:** Easily loan, add, edit, or remove books from the library's collection.
 - **Customers Management:** Add, delete, and update customer information.
 - **Loans Management:** Create, view, and end loans, and check for late loans.
 - **Responsive Web Interface:** Access the application through a web browser with a user-friendly interface.
@@ -47,7 +47,7 @@ Before you start, ensure you have met the following requirements:
 1. Run the Flask application:
 
     ```bash
-    py app.py
+    py backend\app.py
 
 2. Access the application in your web browser at http://localhost:5001/. (You can also simply enter the link flask will give u in the bash)
 
