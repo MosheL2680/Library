@@ -19,7 +19,7 @@ function showErrorNotification(message) {
         duration: 3000, // Notification will disappear after 3 seconds
         gravity: 'top', // Position it at the top of the screen
         position: 'center', // Position it horizontally in the center
-        backgroundColor: 'red', // Background color for errors
+        backgroundColor: 'rgb(175, 12, 12)', // Background color for errors
     }).showToast();
 }
 

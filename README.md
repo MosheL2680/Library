@@ -104,6 +104,7 @@ Here's an overview of the directory structure for this project:
         - `customers.js`: JavaScript code for customers.html functionality.
         - `loans.js`: JavaScript code for loans-.html functionality.
         - `utils.js`: JavaScript jeneric functions for all files.
+  - `tests\`: A directory to store tests files (unittest and pytest)
         
 
 

@@ -1,3 +1,5 @@
+/* This file contain CSS for all HTML files */
+
 body {
   margin-left: 100px;
   margin: 0;
@@ -10,6 +12,14 @@ body {
 }
 
 .topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.sidenav a {
   float: left;
   color: #f2f2f2;
   text-align: center;
@@ -32,11 +42,11 @@ body {
 .sidenav {
   height: 100%;
   /* Full-height sidebar */
-  width: 78px;
+  width: 77.5px;
   /* Set the width of the sidebar */
   position: fixed;
   /* Fixed position to keep it in view */
-  top: 60px;
+  top: 55px;
   /* Adjust this value to create space below the top menu */
   left: 0;
   background-color: #04AA6D;

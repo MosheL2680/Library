@@ -21,6 +21,10 @@ def create_book():
     author = data['author']
     publishedYear = data['publishedYear']
     bookType = data['bookType']
+    
+    # Validate that the title is not an empty string
+    if not title:
+        return jsonify({'error': 'Title cannot be empty.'}), 400
 
     #Validation for bookType
     if bookType not in [1, 2, 3]:

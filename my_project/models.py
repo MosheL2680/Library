@@ -1,7 +1,7 @@
 # This file contain creation of the db models
 
 from datetime import timedelta
-from sqlalchemy import ForeignKeyConstraint
+from sqlalchemy import CheckConstraint, ForeignKeyConstraint
 from my_project import db, app
 from sqlalchemy.orm import relationship
 
@@ -11,11 +11,15 @@ class Book(db.Model):
     __tablename__ = 'books'
 
     bookID = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(255), nullable=False)
+    title = db.Column(db.String(255), nullable=False, server_default='', server_onupdate='', info={'check_constraint': 'title <> ""'})
     author = db.Column(db.String(255), nullable=False)
     publishedYear = db.Column(db.String(255), nullable=False)
     status = db.Column(db.String(20), default='available')
     bookType = db.Column(db.Integer, nullable=False)
+
+    __table_args__ = (
+        CheckConstraint('LENGTH(title) > 0', name='check_title_nonempty'),
+    )
 
     # Establish a one-to-many relationship with loans (the 'cascade' needed to be able to delete a book with a loan record)
     loans = relationship('Loan', backref='book', lazy=True, cascade='all, delete-orphan')
