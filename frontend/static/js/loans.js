@@ -56,13 +56,11 @@ function getAllLoans() {
         .then(function (response) {
             allLoans = response.data.loans; // Assign the fetched loans to the allLoans variable
             // Display search button
-            searchButton.innerHTML = '<button style="margin-left: 85px;" onclick="search(allLoans)">Search</button><button onclick="getAllLoans()">Cancel</button>'
+            searchDiv.innerHTML =   '<input id="searchInput" style="margin-left: 85px;" type="text" onkeypress="search(allLoans)" placeholder="Enter book to search"><button onclick="getAllLoans()">Cancel</button>'
             // Set the currently active side bar item color
             b.style.backgroundColor = '#04AA6D'
             c.style.backgroundColor = '#04AA6D'
             a.style.backgroundColor = '#333'
-            // Clear the search input field
-            searchInput.value = ''
             // Display all loans initially
             displayLoans(allLoans);
         })
@@ -85,7 +83,7 @@ function displayActiveLoans() {
     if (activeLoans.length === 0) showSuccessNotification("There are no active loans.")
     else{
         // Display the relevant search button
-        searchButton.innerHTML = '<button style="margin-left: 85px;" onclick="search(activeLoans)">Search</button><button onclick="displayActiveLoans()">Cancel</button>'
+        searchDiv.innerHTML =   '<input id="searchInput" style="margin-left: 85px;" type="text" onkeypress="search(activeLoans)" placeholder="Enter book to search"><button onclick="displayLoans(activeLoans)">Cancel</button>'
         // Set the currently active side bar item color
         a.style.backgroundColor = '#04AA6D'
         c.style.backgroundColor = '#04AA6D'
@@ -103,13 +101,12 @@ function displayLateLoans() {
     axios.get('/loans/late')
         .then(function (response) {
             lateLoans = response.data.late_loans;
-            console.log(lateLoans);
 
             // Use the ternary operator to conditionally show a notification or display loans
             if(lateLoans.length === 0) showSuccessNotification("There are no late loans.")
             else{
                 // Display the relevant search button
-                searchButton.innerHTML = '<button style="margin-left: 85px;" onclick="search(lateLoans)">Search</button><button onclick="displayLateLoans()">Cancel</button>'
+                searchDiv.innerHTML =   '<input id="searchInput" style="margin-left: 85px;" type="text" onkeypress="search(lateLoans)" placeholder="Enter book to search"><button onclick="displayLoans(lateLoans)">Cancel</button>'
                 // Set the currently active side bar item color
                 b.style.backgroundColor = '#04AA6D'
                 a.style.backgroundColor = '#04AA6D'
