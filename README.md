@@ -44,14 +44,18 @@ Before you start, ensure you have met the following requirements:
 
 ## Usage
 
-1. Run the Flask application:
+1. Navigate into the root dir:
+    ```bash
+    cd Library
+
+2. Run the Flask application:
 
     ```bash
     py backend\app.py
 
-2. Access the application in your web browser at http://localhost:5001/. (You can also simply enter the link flask will give u in the bash)
+3. Access the application in your web browser at http://localhost:5001/. (You can also simply enter the link flask will give u in the bash)
 
-3. You can now use the Library Management System to manage books, customers, and loans.
+4. You can now use the Library Management System to manage books, customers, and loans.
 
 ## API Endpoints
 
