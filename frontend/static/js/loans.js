@@ -103,6 +103,7 @@ function displayLateLoans() {
     axios.get('/loans/late')
         .then(function (response) {
             lateLoans = response.data.late_loans;
+            console.log(lateLoans);
 
             // Use the ternary operator to conditionally show a notification or display loans
             if(lateLoans.length === 0) showSuccessNotification("There are no late loans.")

@@ -2,7 +2,7 @@
 
 from datetime import datetime
 from flask import Blueprint, jsonify, request
-from sqlalchemy import func
+from sqlalchemy import func, null
 from my_project import db
 from my_project.models import Book, Customer, Loan
 
@@ -85,7 +85,7 @@ def get_late_loans():
     # filter late and active loans
     late_loans = Loan.query.join(Book, Loan.bookID == Book.bookID).filter(
         Loan.maxReturnDate < current_date,
-        Book.status == 'unavailable'
+        Loan.returnDate.is_(None)
     ).all()
 
     late_loan_list = [{'loanID': loan.loanID, 'loanDate': loan.loanDate, 'MaxReturnDate': loan.maxReturnDate, 'ReturnDate': loan.returnDate, 'bookTitle': loan.book.title, 'customerName': loan.customer.Name} for loan in late_loans]
