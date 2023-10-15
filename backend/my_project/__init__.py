@@ -6,7 +6,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
 
-app = Flask(__name__)
+# Create a Flask instance and basic configuration
+app = Flask(__name__, template_folder="../../frontend/templates", static_folder='../../frontend/static')
 
 
 # Configure the SQLAlchemy database connection with an SQLite database named 'library.db'

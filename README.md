@@ -83,29 +83,31 @@ The project provides the following API endpoints:
 Here's an overview of the directory structure for this project:
 
 - `library/`: The root directory of the project.
-  - `app.py`: The main application script. (run the app, and endpoints for render template the web pages).
+  - `backend/`
+    - `instance/`: A directory to store the SQLite database file.
+      - `library.db`: The SQLite database used by the application.
+    - `my_project/`: A subdirectory containing the main project code.
+      - `__init__.py`: The Python package initialization file. Conatain some basic configuration as register blueptints.
+      - `models.py`: File for defining database models.
+      - `books.py`: File for handling book-related routes.
+      - `customers.py`: File for handling customer-related routes.
+      - `loans.py`: File for handling loan-related routes.
+    - `tests\`: A directory to store tests files (unittest and pytest)
+    - `app.py`: The main application script. (run the app, and endpoints for render template the web pages).
+  - `frontend/`
+      - `static/`: A directory for static files such as CSS and JavaScript.
+        - `css/`: Subdirectory for CSS stylesheets.
+          - `stylesheet.css`: The main CSS stylesheet.
+        - `js/`: Subdirectory for JavaScript files.
+          - `books.js`: JavaScript code for books.html functionality.
+          - `customers.js`: JavaScript code for customers.html functionality.
+          - `loans.js`: JavaScript code for loans-.html functionality.
+          - `utils.js`: JavaScript jeneric functions for all files.  
+      - `templates/`: A directory containing HTML files for the web interface.
+  - `screenshots/`: A directory for storing screenshots of the project.
   - `readme.md`: This README file.
   - `requirements.txt`: A file listing the project's dependencies.
-  - `instance/`: A directory to store the SQLite database file.
-    - `library.db`: The SQLite database used by the application.
-  - `screenshots/`: A directory for storing screenshots of the project.
-  - `my_project/`: A subdirectory containing the main project code.
-    - `__init__.py`: The Python package initialization file. Conatain some basic configuration as register blueptints.
-    - `models.py`: File for defining database models.
-    - `books.py`: File for handling book-related routes.
-    - `customers.py`: File for handling customer-related routes.
-    - `loans.py`: File for handling loan-related routes.
-    - `templates/`: A directory containing HTML files for the web interface.
-    - `static/`: A directory for static files such as CSS and JavaScript.
-      - `css/`: Subdirectory for CSS stylesheets.
-        - `stylesheet.css`: The main CSS stylesheet.
-      - `js/`: Subdirectory for JavaScript files.
-        - `books.js`: JavaScript code for books.html functionality.
-        - `customers.js`: JavaScript code for customers.html functionality.
-        - `loans.js`: JavaScript code for loans-.html functionality.
-        - `utils.js`: JavaScript jeneric functions for all files.
-  - `tests\`: A directory to store tests files (unittest and pytest)
-        
+      
 
 
 
