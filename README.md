@@ -126,14 +126,14 @@ Here are screenshots of the different pages in the web application:
 #### Home Page
 ![Home Page](screenshots/home.png)
 
+#### Loans Page
+![Loans Page](screenshots/loans.png)
+
 #### Books Page
 ![Books Page](screenshots/books.png)
 
 #### Customers Page
 ![Customers Page](screenshots/customers.png)
-
-#### Loans Page
-![Loans Page](screenshots/loans.png)
 
 
 ## Contributing

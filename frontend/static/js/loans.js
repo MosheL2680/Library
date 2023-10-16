@@ -83,7 +83,7 @@ function displayActiveLoans() {
     if (activeLoans.length === 0) showSuccessNotification("There are no active loans.")
     else{
         // Display the relevant search button
-        searchDiv.innerHTML =   '<input id="searchInput" style="margin-left: 85px;" type="text" onkeypress="search(activeLoans)" placeholder="Enter book to search"><button onclick="displayLoans(activeLoans)">Cancel</button>'
+        searchDiv.innerHTML =   '<input id="searchInput" style="margin-left: 85px;" type="text" onkeypress="search(activeLoans)" placeholder="Enter book to search"><button onclick="displayActiveLoans()">Cancel</button>'
         // Set the currently active side bar item color
         a.style.backgroundColor = '#04AA6D'
         c.style.backgroundColor = '#04AA6D'
@@ -106,7 +106,7 @@ function displayLateLoans() {
             if(lateLoans.length === 0) showSuccessNotification("There are no late loans.")
             else{
                 // Display the relevant search button
-                searchDiv.innerHTML =   '<input id="searchInput" style="margin-left: 85px;" type="text" onkeypress="search(lateLoans)" placeholder="Enter book to search"><button onclick="displayLoans(lateLoans)">Cancel</button>'
+                searchDiv.innerHTML =   '<input id="searchInput" style="margin-left: 85px;" type="text" onkeypress="search(lateLoans)" placeholder="Enter book to search"><button onclick="displayLateLoans()">Cancel</button>'
                 // Set the currently active side bar item color
                 b.style.backgroundColor = '#04AA6D'
                 a.style.backgroundColor = '#04AA6D'
