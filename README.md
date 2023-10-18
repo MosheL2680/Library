@@ -107,7 +107,7 @@ Here's an overview of the directory structure for this project:
           - `customers.js`: JavaScript code for customers.html functionality.
           - `loans.js`: JavaScript code for loans-.html functionality.
           - `utils.js`: JavaScript jeneric functions for all files.  
-      - `templates/`: A directory containing HTML files for the web interface.
+      - `html/`: A directory containing HTML files for the web interface.
   - `screenshots/`: A directory for storing screenshots of the project.
   - `readme.md`: This README file.
   - `requirements.txt`: A file listing the project's dependencies.
