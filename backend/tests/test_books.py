@@ -21,10 +21,4 @@ def test_can_create_book():
     response = requests.post(ENDPOINT, json=payload) 
     assert response.status_code == 200 #if status code is'nt 200 the test would faile
 
-#Test if can delete a book (DEL)
-def test_if_can_delete_book():
-    pass
-
-#Test if can update a book (PUT)
-def test_if_can_update_book():
-    pass  
+ 

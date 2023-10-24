@@ -1,3 +1,5 @@
+# This file contain tests for models
+
 from my_project import db, app
 import sqlite3
 import pytest

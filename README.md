@@ -96,8 +96,9 @@ Here's an overview of the directory structure for this project:
       - `books.py`: File for handling book-related routes.
       - `customers.py`: File for handling customer-related routes.
       - `loans.py`: File for handling loan-related routes.
+      - `views.py`: File for handling routes to render templates the web pages.
     - `tests\`: A directory to store tests files (unittest and pytest)
-    - `app.py`: The main application script. (run the app, and endpoints for render template the web pages).
+    - `app.py`: This file run the app.
   - `frontend/`
       - `static/`: A directory for static files such as CSS and JavaScript.
         - `css/`: Subdirectory for CSS stylesheets.
@@ -106,7 +107,8 @@ Here's an overview of the directory structure for this project:
           - `books.js`: JavaScript code for books.html functionality.
           - `customers.js`: JavaScript code for customers.html functionality.
           - `loans.js`: JavaScript code for loans-.html functionality.
-          - `utils.js`: JavaScript jeneric functions for all files.  
+          - `utils.js`: JavaScript jeneric functions for all files. 
+        - `img/` : Subdirectory for images.
       - `html/`: A directory containing HTML files for the web interface.
   - `screenshots/`: A directory for storing screenshots of the project.
   - `readme.md`: This README file.

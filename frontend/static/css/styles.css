@@ -89,3 +89,13 @@ body {
   padding: 20px;
   /* Add padding to the table container */
 }
+
+
+.bg-image {
+  background-image: url('../img/background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100%;
+}

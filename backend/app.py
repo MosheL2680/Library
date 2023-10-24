@@ -1,25 +1,12 @@
-from flask import render_template
+# This file run the flask project
+
 from my_project import app
 
-
-# Routes to render templates the web pages
-@app.route('/')
-def index_page():
-    return render_template('index.html')
-
-@app.route('/Loans')
-def loans_page():
-    return render_template('loans.html')
-
-@app.route('/Books')
-def books_page():
-    return render_template('books.html')
-
-@app.route('/Customers')
-def customers_page():
-    return render_template('customers.html')
+# Route to render the background img of the web
+@app.route('/static/img/<image_filename>')
+def serve_image(image_filename):
+    return app.send_static_file('img/' + image_filename)
 
 
-# Run the flask app
 if __name__ == '__main__':
     app.run(port=5001, debug=True)

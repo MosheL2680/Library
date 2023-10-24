@@ -1,3 +1,5 @@
+# This file test the app
+
 import unittest
 
 from my_project import app

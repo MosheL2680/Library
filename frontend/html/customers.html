@@ -14,7 +14,7 @@
     <title>Customers</title>
 </head>
 
-<body>
+<body class="bg-image">
 
     <div class="topnav">
         <a href="/">Home</a>
@@ -28,10 +28,9 @@
         <h2>Manage customers</h2>
     </div>
 
+    <button id="toggleFormButton" style="margin-left: 10px;">Add New Customer</button>
     <input type="text" id="searchInput" placeholder="Enter name to search" onkeypress="search()" style="margin-left: 10px;">
     <button onclick="getAllCustomers()">Cancel</button><br><br>
-    <button id="toggleFormButton" style="margin-left: 10px;">Add New Customer</button>
-
 
     <div id="addCustomerForm" style="display: none; margin-left: 10px;">
         <h5>Add a New Cusomer</h5>
